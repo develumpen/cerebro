@@ -1,0 +1,23 @@
+.receipt__form {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.receipt__form__photo {
+  cursor: pointer;
+  position: relative;
+}
+
+.receipt__form__photo span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: .5rem;
+}
+
+.receipt__photos {
+  margin-top: 1rem;
+}

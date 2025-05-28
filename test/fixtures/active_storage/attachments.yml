@@ -1,0 +1,4 @@
+with_photos_photo:
+  name: photos
+  record: with_photos (Receipt)
+  blob: with_photos_photo_blob

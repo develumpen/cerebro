@@ -1,0 +1,38 @@
+<%= form_with(model:) do |form| %>
+  <%= render "common/form_errors", model: %>
+
+  <p>
+    <%= form.label :purchased_at %><br />
+    <%= form.datetime_field :purchased_at %>
+  </p>
+
+  <p>
+    <%= form.label :amount, "Amount (in cents)" %><br />
+    <%= form.number_field :amount, step: 1 %>
+    <%= form.select :currency, [ :usd, :eur ] %>
+  </p>
+
+  <p>
+    <%= form.label :description %><br />
+    <%= form.text_area :description, rows: 3 %>
+  </p>
+
+  <p>
+    <%= form.file_field :photos, multiple: true %>
+  </p>
+
+  <% if model.photos.attached? %>
+    <div class="receipt__form" data-controller="remove-photo">
+      <% model.photos.each do |photo| %>
+        <div data-action="click->remove-photo#remove" class="receipt__form__photo">
+          <%= image_tag photo.variant(:thumb) %>
+          <span>Remove</span>
+          <%= form.hidden_field :photos, multiple: true, value: photo.signed_id %>
+        </div>
+      <% end %>
+    </div>
+    <br />
+  <% end %>
+
+  <%= form.submit %>
+<% end %>

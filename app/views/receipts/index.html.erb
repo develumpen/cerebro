@@ -1,0 +1,17 @@
+<%= content_for(:title) { "Receipts" } %>
+
+<h1>Receipts</h1>
+
+<%= link_to "Add new receipt", new_receipt_path %>
+
+<% if @receipts.any? %>
+  <ul>
+    <% @receipts.each do |receipt| %>
+      <li>
+        <%= link_to receipt.purchased_at, receipt %> -
+        <%= format_amount(receipt.amount, receipt.currency) %> -
+        <%= receipt.description.truncate_words(10) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
