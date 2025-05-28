@@ -1,0 +1,22 @@
+<%= content_for(:title) { "View receipt" } %>
+
+<%= link_to "Receipts", receipts_path %>
+
+<h1><%= @receipt.purchased_at %></h1>
+
+<p><%= format_amount(@receipt.amount, @receipt.currency) %></p>
+
+<p><%= @receipt.description %></p>
+
+<div>
+  <%= button_to "Delete", @receipt, method: :delete, form_class: "inline", data: { turbo_confirm: "Are you sure?" } %> |
+  <%= link_to "Edit", edit_receipt_path(@receipt) %>
+</div>
+
+<div class="receipt__photos">
+  <% @receipt.photos.each do |photo| %>
+    <%= link_to url_for(photo), target: "_blank" do
+      image_tag photo.variant(:thumb)
+    end %>
+  <% end %>
+</div>
