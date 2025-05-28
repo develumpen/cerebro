@@ -4,4 +4,5 @@ class Receipt < ApplicationRecord
   end
 
   validates_presence_of :description, :purchased_at
+  validates :currency, inclusion: { in: %w[usd eur], message: "%{value} is not a valid currency" }
 end

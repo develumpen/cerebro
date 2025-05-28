@@ -4,10 +4,10 @@ with_photos:
   purchased_at: 2025-05-26 20:29:24
   description: A receipt with photos
   amount: 200
-  currency: USD
+  currency: usd
 
 without_photos:
   purchased_at: 2025-05-26 20:29:24
   description: A receipt without photos
   amount: 100
-  currency: USD
+  currency: usd
