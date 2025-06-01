@@ -13,3 +13,13 @@ module ActiveSupport
     # Add more helper methods to be used by all tests here...
   end
 end
+
+module AuthHelper
+  def sign_in(user)
+    user.sessions.create!(user_agent: nil, ip_address: nil).tap do |session|
+      cookie_jar = ActionDispatch::TestRequest.create.cookie_jar
+      cookie_jar.signed[:session_id] = { value: session.id, httponly: true, same_site: :lax }
+      cookies[:session_id] = cookie_jar[:session_id]
+    end
+  end
+end
