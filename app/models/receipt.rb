@@ -1,4 +1,5 @@
 class Receipt < ApplicationRecord
+  belongs_to :user
   has_many_attached :photos do |attachable|
     attachable.variant :thumb, resize_to_limit: [ 300, nil ]
   end

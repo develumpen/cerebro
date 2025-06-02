@@ -1,0 +1,8 @@
+footer {
+  margin-top: 3rem;
+}
+
+.error,
+.field_with_errors {
+  color: red;
+}

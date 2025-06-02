@@ -1,12 +1,14 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 with_photos:
+  user: one
   purchased_at: 2025-05-26 20:29:24
   description: A receipt with photos
   amount: 200
   currency: usd
 
 without_photos:
+  user: one
   purchased_at: 2025-05-26 20:29:24
   description: A receipt without photos
   amount: 100
