@@ -46,6 +46,27 @@ Rails.application.configure do
   # Don't log any deprecations.
   config.active_support.report_deprecations = false
 
+  # Configure ActionMailer for production
+  config.action_mailer.perform_caching = false
+
+  # Ignore bad email addresses and do not raise email delivery errors.
+  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
+  config.action_mailer.raise_delivery_errors = false
+
+  # Set delivery method (smtp is common for production)
+  config.action_mailer.delivery_method = :smtp
+
+  # SMTP settings for your email provider
+  # config.action_mailer.smtp_settings = {
+  #   address:              'smtp.example.com',
+  #   port:                 587,
+  #   domain:               'example.com',
+  #   user_name:            ENV['SMTP_USERNAME'],
+  #   password:             ENV['SMTP_PASSWORD'],
+  #   authentication:       'plain',
+  #   enable_starttls_auto: true
+  # }
+
   # Replace the default in-process memory cache store with a durable alternative.
   config.cache_store = :solid_cache_store
 

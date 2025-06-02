@@ -2,18 +2,18 @@ class ReceiptsController < ApplicationController
   before_action :set_receipt, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @receipts = Receipt.order(purchased_at: :desc)
+    @receipts = Current.user.receipts.order(purchased_at: :desc)
   end
 
   def show
   end
 
   def new
-    @receipt = Receipt.new
+    @receipt = Current.user.receipts.new
   end
 
   def create
-    @receipt = Receipt.new(receipt_params)
+    @receipt = Current.user.receipts.new(receipt_params)
 
     if @receipt.save
       redirect_to @receipt, notice: "Receipt was successfully created."
@@ -46,6 +46,6 @@ class ReceiptsController < ApplicationController
   end
 
   def set_receipt
-    @receipt = Receipt.find(params[:id])
+    @receipt = Current.user.receipts.find(params[:id])
   end
 end
