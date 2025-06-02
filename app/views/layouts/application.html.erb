@@ -27,5 +27,9 @@
     <%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
 
     <%= yield %>
+
+    <footer>
+      <%= button_to "Sign out", session_path, method: :delete if authenticated? %>
+    </footer>
   </body>
 </html>
