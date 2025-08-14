@@ -1,0 +1,16 @@
+<nav class="menu">
+  <%= link_to "🧠 Cerebro", root_path, class: "logo" %>
+
+  <ul class="links">
+    <% if authenticated? %>
+    <li><%= Current.user.username %></li>
+    <li>
+      <%= button_to "Desconectar", session_path, form_class: "button_to_inline", method: :delete %>
+    </li>
+    <% else %>
+      <li>
+        <%= link_to "Conéctate", new_session_path %>
+      </li>
+    <% end %>
+  </ul>
+</nav>
