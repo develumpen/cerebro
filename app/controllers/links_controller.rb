@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-  before_action :set_link, only: %i[ show edit update destroy ]
+  before_action :set_link, only: %i[ edit update destroy ]
 
   def index
     @links = Link.order(created_at: :desc)
@@ -24,7 +24,7 @@ class LinksController < ApplicationController
 
   def update
     if @link.update(link_params)
-      redirect_to @link, notice: "Link was successfully updated.", status: :see_other
+      redirect_to links_path, notice: "Link was successfully updated.", status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
