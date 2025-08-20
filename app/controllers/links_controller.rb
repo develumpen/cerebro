@@ -1,3 +1,5 @@
+require "open-uri"
+
 class LinksController < ApplicationController
   before_action :set_link, only: %i[ edit update destroy ]
 
@@ -6,7 +8,7 @@ class LinksController < ApplicationController
   end
 
   def new
-    @link = Current.user.links.new
+    @link = Current.user.links.new(link_info)
   end
 
   def edit
@@ -42,5 +44,20 @@ class LinksController < ApplicationController
 
     def link_params
       params.expect(link: [ :url, :title, :description ])
+    end
+
+    def link_info
+      return unless params[:url]
+
+      doc = Nokogiri::HTML(URI.open(params[:url]))
+
+      {
+        url: params[:url],
+        title: doc.title,
+        description: doc.at("meta[name='description']")&.attr("content")
+      }
+    rescue => e
+      logger.debug("[ERROR] #{e}")
+      {}
     end
 end
