@@ -1,0 +1,22 @@
+<%= form_with(model: link) do |form| %>
+  <%= render "common/form_errors", model: link %>
+
+  <div>
+    <%= form.label :url, style: "display: block" %>
+    <%= form.text_field :url %>
+  </div>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.textarea :description %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

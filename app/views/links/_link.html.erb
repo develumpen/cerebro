@@ -1,0 +1,11 @@
+<div id="<%= dom_id link %>" class="link">
+  <%= link_to link.title, link.url, target: "_blank", class: "link-title" %>
+  <% if link.description %>
+    <p class="link-description"><%= link.description %></p>
+  <% end %>
+
+  <div class="link-meta">
+    <%= link_to "Editar", edit_link_path(link) %>
+    <%= button_to "Eliminar", link_path(link), method: :delete, form_class: "button_to_inline", data: { turbo_confirm: "¿Seguro que quieres eliminar este enlace?" } %>
+  </div>
+</div>

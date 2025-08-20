@@ -1,0 +1,25 @@
+.link {
+  margin-bottom: 1rem;
+
+  .link-title {
+    font-size: 1.4rem;
+  }
+
+  .link-description {
+    margin: .5rem 0;
+  }
+
+  .link-meta a,
+  .link-meta button {
+      font-size: .8rem;
+      border: none;
+      background: none;
+      font-family: serif;
+      color: blue;
+      text-decoration: underline;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+}
