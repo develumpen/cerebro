@@ -1,0 +1,26 @@
+.page-header {
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid black;
+  
+  @media screen and (min-width: 768px) {
+    padding-bottom: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: none;
+  }
+
+  .page-title {
+    margin: 0 0 .5rem 0;
+
+    @media screen and (min-width: 768px) {
+      margin-bottom: 0;
+    }
+  }
+
+  .page-actions {
+  }
+}

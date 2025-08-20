@@ -4,6 +4,7 @@
   <ul class="links">
     <% if authenticated? %>
     <li><%= Current.user.username %></li>
+    <li><%= link_to "Enlaces", links_path %></li>
     <li>
       <%= button_to "Desconectar", session_path, form_class: "button_to_inline", method: :delete %>
     </li>
