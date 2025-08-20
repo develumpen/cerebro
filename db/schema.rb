@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_14_230906) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_20_200118) do
   create_table "links", force: :cascade do |t|
     t.string "url", null: false
     t.string "title", null: false
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_links_on_user_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -38,5 +40,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_14_230906) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "links", "users"
   add_foreign_key "sessions", "users"
 end

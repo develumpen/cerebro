@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
+
+  has_many :links, dependent: :destroy
   has_many :sessions, dependent: :destroy
 
   normalizes :email, with: ->(e) { e.strip.downcase }

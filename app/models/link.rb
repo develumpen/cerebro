@@ -1,4 +1,6 @@
 class Link < ApplicationRecord
+  belongs_to :user
+
   validates :url, presence: true
   validate :url_has_scheme_and_host
   validates :title, presence: true

@@ -1,11 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  user: one
   url: https://breakabletoys.com
-  title: MyString
+  title: Breakable Toys
   description: MyText
 
 two:
+  user: two
   url: https://develumpen.com
-  title: MyString
+  title: Develumpen Blog
   description: MyText

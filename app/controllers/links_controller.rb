@@ -2,18 +2,18 @@ class LinksController < ApplicationController
   before_action :set_link, only: %i[ edit update destroy ]
 
   def index
-    @links = Link.order(created_at: :desc)
+    @links = Current.user.links.order(created_at: :desc)
   end
 
   def new
-    @link = Link.new
+    @link = Current.user.links.new
   end
 
   def edit
   end
 
   def create
-    @link = Link.new(link_params)
+    @link = Current.user.links.new(link_params)
 
     if @link.save
       redirect_to links_path, notice: "Link was successfully created."
@@ -37,7 +37,7 @@ class LinksController < ApplicationController
 
   private
     def set_link
-      @link = Link.find(params.expect(:id))
+      @link = Current.user.links.find(params.expect(:id))
     end
 
     def link_params
