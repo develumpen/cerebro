@@ -16,7 +16,11 @@ class MoviesController < ApplicationController
       tmdb_movie = Tmdb::Movie.details(params[:id])
       raise ActiveRecord::RecordNotFound if tmdb_movie[:error_code]
 
-      @movie = Movie.create!(
+      @movie = cache_movie(tmdb_movie)
+    end
+
+    def cache_movie(tmdb_movie)
+      Movie.create!(
         title: tmdb_movie[:title],
         tmdb_id: tmdb_movie[:id],
         imdb_id: tmdb_movie[:imdb_id],

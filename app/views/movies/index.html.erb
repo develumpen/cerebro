@@ -1,4 +1,4 @@
-<h1>Películas</h1>
+<% content_for :title, "Películas" %>
 
 <%= form_with(url: movies_path, method: :get) do |form| %>
   <p>
@@ -19,14 +19,14 @@
       </div>
     <% end %>
   </div>
-<% end %>
 
-<div class="pagination">
-  <% if @movies[:page].to_i > 1 %>
-    <%= link_to "Anterior", movies_path(query: params[:query], page: @movies[:page].to_i - 1), class: "previous" %>
-  <% end %>
-  <% if @movies[:page].to_i < @movies[:total_pages].to_i %>
-    <%= link_to "Siguiente", movies_path(query: params[:query], page: @movies[:page].to_i + 1), class: "next" %>
-  <% end %>
-</div>
+  <div class="pagination">
+    <% if @movies[:page].to_i > 1 %>
+      <%= link_to "Anterior", movies_path(query: params[:query], page: @movies[:page].to_i - 1), class: "previous" %>
+    <% end %>
+    <% if @movies[:page].to_i < @movies[:total_pages].to_i %>
+      <%= link_to "Siguiente", movies_path(query: params[:query], page: @movies[:page].to_i + 1), class: "next" %>
+    <% end %>
+  </div>
+<% end %>
 
