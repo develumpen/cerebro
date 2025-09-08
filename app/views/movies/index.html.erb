@@ -1,0 +1,23 @@
+<h1>Películas</h1>
+
+<%= form_with(url: movies_path, method: :get) do |form| %>
+  <p>
+    <%= form.text_field :query, { value: params[:query] } %>
+    <%= form.submit "Buscar", name: nil %>
+  </p>
+<% end %>
+
+<% if @movies.present? %>
+  <div id="movies" %>
+    <% @movies[:results].each do |movie| %>
+      <div class="media-item">
+        <%= image_tag("https://image.tmdb.org/t/p/w92#{movie[:poster_path]}", { width: 60 }) %>
+        <div class="content">
+          <%= link_to movie[:title], movie_path(movie[:id]) %>
+          <%= movie[:release_date].split("-").first %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+

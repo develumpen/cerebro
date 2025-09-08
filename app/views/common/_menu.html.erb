@@ -3,11 +3,12 @@
 
   <ul class="links">
     <% if authenticated? %>
-    <li><%= Current.user.username %></li>
-    <li><%= link_to "Enlaces", links_path %></li>
-    <li>
-      <%= button_to "Desconectar", session_path, form_class: "button_to_inline", method: :delete %>
-    </li>
+      <li><%= Current.user.username %></li>
+      <li><%= link_to "Enlaces", links_path %></li>
+      <li><%= link_to "Películas", movies_path %></li>
+      <li>
+        <%= button_to "Desconectar", session_path, form_class: "button_to_inline", method: :delete %>
+      </li>
     <% else %>
       <li>
         <%= link_to "Conéctate", new_session_path %>
