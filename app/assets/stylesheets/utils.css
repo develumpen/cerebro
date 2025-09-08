@@ -1,3 +1,26 @@
 .button_to_inline {
   display: inline-block;
 }
+
+.pagination {
+  display: flex;
+
+  .previous {
+    flex-grow: 1;
+    text-align: left;
+
+    &:before {
+      content: "←";
+    }
+  }
+
+  .next {
+    flex-grow: 1;
+    text-align: right;
+
+    &:after {
+      content: "→";
+    }
+  }
+}
+

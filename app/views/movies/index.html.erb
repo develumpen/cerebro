@@ -21,3 +21,12 @@
   </div>
 <% end %>
 
+<div class="pagination">
+  <% if @movies[:page].to_i > 1 %>
+    <%= link_to "Anterior", movies_path(query: params[:query], page: @movies[:page].to_i - 1), class: "previous" %>
+  <% end %>
+  <% if @movies[:page].to_i < @movies[:total_pages].to_i %>
+    <%= link_to "Siguiente", movies_path(query: params[:query], page: @movies[:page].to_i + 1), class: "next" %>
+  <% end %>
+</div>
+

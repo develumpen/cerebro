@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
   before_action :set_movie, only: %i[ show ]
 
   def index
-    @movies = params[:query] ? Tmdb::Movie.search(params[:query]) : []
+    @movies = params[:query] ? Tmdb::Movie.search(params[:query], params[:page] || 1) : []
   end
 
   def show

@@ -16,8 +16,8 @@ module Tmdb
       }
     end
 
-    def self.search(query)
-      response = Faraday.get("https://api.themoviedb.org/3/search/movie", { query: }, { "Authorization": "Bearer #{Rails.application.credentials.dig(:tmdb, :read_access_token)}" })
+    def self.search(query, page = 1)
+      response = Faraday.get("https://api.themoviedb.org/3/search/movie", { query:, page: }, { "Authorization": "Bearer #{Rails.application.credentials.dig(:tmdb, :read_access_token)}" })
 
       return JSON.parse(response.body, { symbolize_names: true }) if response.success?
 
