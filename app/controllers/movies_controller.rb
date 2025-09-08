@@ -10,8 +10,19 @@ class MoviesController < ApplicationController
 
   private
     def set_movie
-      @movie = Tmdb::Movie.details(params[:id])
+      @movie = Movie.find_by_tmdb_id params[:id]
+      return @movie if @movie
 
-      raise ActiveRecord::RecordNotFound if @movie[:error_code]
+      tmdb_movie = Tmdb::Movie.details(params[:id])
+      raise ActiveRecord::RecordNotFound if tmdb_movie[:error_code]
+
+      @movie = Movie.create!(
+        title: tmdb_movie[:title],
+        tmdb_id: tmdb_movie[:id],
+        imdb_id: tmdb_movie[:imdb_id],
+        release_year: tmdb_movie[:release_date].split("-").first,
+        poster_path: tmdb_movie[:poster_path],
+        overview: tmdb_movie[:overview]
+      )
     end
 end
