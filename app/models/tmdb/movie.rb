@@ -1,15 +1,14 @@
 module Tmdb
   class Movie
-    def self.details(id)
-      base_url = "https://api.themoviedb.org/3/movie"
+    BASE_URL = "https://api.themoviedb.org/3/"
 
-      response = Faraday.get("#{base_url}/#{id}", {}, { "Authorization": "Bearer #{Rails.application.credentials.dig(:tmdb, :read_access_token)}" })
+    def self.details(id)
+      url = "#{BASE_URL}movie/#{id}"
+
+      response = Faraday.get(url, {}, authorization_headers)
 
       return JSON.parse(response.body, { symbolize_names: true }) if response.success?
 
-      Rails.logger.debug("-" * 10)
-      Rails.logger.debug(response)
-      Rails.logger.debug("-" * 10)
       {
         error_code: response.status,
         error_message: "Algo no ha ido como se esperaba..."
@@ -17,17 +16,24 @@ module Tmdb
     end
 
     def self.search(query, page = 1)
-      response = Faraday.get("https://api.themoviedb.org/3/search/movie", { query:, page: }, { "Authorization": "Bearer #{Rails.application.credentials.dig(:tmdb, :read_access_token)}" })
+      url = "#{BASE_URL}search/movie"
+
+      response = Faraday.get(url, { query:, page: }, authorization_headers)
 
       return JSON.parse(response.body, { symbolize_names: true }) if response.success?
 
-      Rails.logger.debug("-" * 10)
-      Rails.logger.debug(response)
-      Rails.logger.debug("-" * 10)
       {
         error_code: response.status,
         error_message: "Algo no ha ido como se esperaba..."
       }
     end
+
+    private
+
+      def self.authorization_headers
+        {
+          "Authorization": "Bearer #{Rails.application.credentials.dig(:tmdb, :read_access_token)}"
+        }
+      end
   end
 end
