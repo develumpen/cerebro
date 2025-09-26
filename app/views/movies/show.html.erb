@@ -1,0 +1,15 @@
+<% content_for :title, @movie.title %>
+
+<div class="movie media-item">
+  <%= image_tag("https://image.tmdb.org/t/p/w92#{@movie.poster_path}", { width: 60 }) %>
+  <div class="content">
+    <% if action_name != "show" %>
+      <h1><%= @movie.title %></h1>
+    <% end %>
+    <%= @movie.release_year %>
+  </div>
+  <div class="overview">
+    <%= @movie.overview %>
+  </div>
+</div>
+

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   resources :links, only: %i[ index new edit create update destroy ]
+  resources :movies, only: %i[ index show ]
   resource :session
   resources :passwords, param: :token
 

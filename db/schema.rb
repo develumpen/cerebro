@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_20_200118) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_08_011804) do
   create_table "links", force: :cascade do |t|
     t.string "url", null: false
     t.string "title", null: false
@@ -19,6 +19,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_20_200118) do
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_links_on_user_id"
+  end
+
+  create_table "movies", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "tmdb_id", null: false
+    t.string "imdb_id"
+    t.integer "release_year"
+    t.string "poster_path"
+    t.text "overview"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sessions", force: :cascade do |t|

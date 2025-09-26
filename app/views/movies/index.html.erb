@@ -1,0 +1,32 @@
+<% content_for :title, "Películas" %>
+
+<%= form_with(url: movies_path, method: :get) do |form| %>
+  <p>
+    <%= form.text_field :query, { value: params[:query] } %>
+    <%= form.submit "Buscar", name: nil %>
+  </p>
+<% end %>
+
+<% if @movies.present? %>
+  <div id="movies" %>
+    <% @movies[:results].each do |movie| %>
+      <div class="media-item">
+        <%= image_tag("https://image.tmdb.org/t/p/w92#{movie[:poster_path]}", { width: 60 }) %>
+        <div class="content">
+          <%= link_to movie[:title], movie_path(movie[:id]) %>
+          <%= movie[:release_date].split("-").first %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="pagination">
+    <% if @movies[:page].to_i > 1 %>
+      <%= link_to "Anterior", movies_path(query: params[:query], page: @movies[:page].to_i - 1), class: "previous" %>
+    <% end %>
+    <% if @movies[:page].to_i < @movies[:total_pages].to_i %>
+      <%= link_to "Siguiente", movies_path(query: params[:query], page: @movies[:page].to_i + 1), class: "next" %>
+    <% end %>
+  </div>
+<% end %>
+
